@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: multiple
+spec:
+ containers: 
+  - image: nginx
+    name: sainginx
+  - image: almalinux
+    name: sidecar
+    command: [sleep","200"] 
+  tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Exists
+    effect: NoSchedule
